@@ -2,9 +2,7 @@ package cl.udemy.jpa.controller;
 
 import java.util.List;
 import java.util.Map;
-
 import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import cl.udemy.jpa.modelo.Cliente;
 import cl.udemy.jpa.modelo.Factura;
 import cl.udemy.jpa.modelo.ItemFactura;
