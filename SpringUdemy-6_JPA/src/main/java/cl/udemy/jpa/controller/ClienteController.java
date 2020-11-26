@@ -4,6 +4,7 @@ package cl.udemy.jpa.controller;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Collection;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import javax.validation.Valid;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -53,6 +55,9 @@ public class ClienteController {
 	@Autowired
 	private IUploadService uploadService;
 	
+	@Autowired
+	private MessageSource messageSource;
+	
 	protected final Log logger = LogFactory.getLog(this.getClass());
 	
 	@Secured({"ROLE_USER"})
@@ -88,7 +93,7 @@ public class ClienteController {
 
 	@RequestMapping(value = {"/listar","/"}, method = RequestMethod.GET)
 	public String listar(Model modelo,Authentication authentication,
-			HttpServletRequest request,
+			HttpServletRequest request, Locale locale,
 			@RequestParam(name = "page", defaultValue = "0") int page) {
 		
 		if(authentication != null) {
@@ -128,7 +133,7 @@ public class ClienteController {
 		PageRender<Cliente> pageRender = new PageRender<Cliente>("/listar", clientes);
 
 		modelo.addAttribute("clientes", clientes);
-		modelo.addAttribute("titulo", "Listado de clientes");
+		modelo.addAttribute("titulo", messageSource.getMessage("text.cliente.listar.titulo", null, locale));
 		modelo.addAttribute("page", pageRender);
 
 		return "listar";
