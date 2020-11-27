@@ -22,15 +22,15 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="#">Home
+					<li class="nav-item active"><a class="nav-link" th:href="@{/}" th:text="#{text.menu.home}">Home
 							<span class="sr-only">(current)</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/listar}">Clientes</a>
+					<li class="nav-item"><a class="nav-link" th:href="@{/listar}" th:text="#{text.menu.customer}">Clientes</a>
 					</li>
 				</ul>
 				<ul class="navbar-nav navbar-right">
 					<li sec:authorize="!isAuthenticated()"><a
-						class="btn btn-outline-primary" th:href="@{/login}">Sign in</a></li>
+						class="btn btn-outline-primary" th:href="@{/login}" th:text="#{text.menu.signin}">Sign in</a></li>
 
 					<li sec:authorize="isAuthenticated()" class="dropdown show"><a
 						class="btn btn-outline-primary dropdown-toggle" href="#"
@@ -42,9 +42,9 @@
 							<form id="logoutForm" th:action="@{/logout}" method="post">
 								<button class="dropdown-item"
 									onclick="document.getElementById('logoutForm').submit();"
-									type="submit">Sign Out</button>
+									type="submit" th:text="#{text.menu.signout}">Sign Out</button>
 								<input type="hidden" th:name="${_csrf.parameterName}"
-									th:value="${_csrf.token}">
+									th:value="${_csrf.token}"/>
 
 							</form>
 
@@ -89,7 +89,7 @@
 	<footer th:fragment="footer" class="container">
 
 		<p sec:authorize="isAuthenticated()">
-			Usuario Logueado : <span sec:authentication="name"></span> | Roles <span
+			Usuario Logueado : <span sec:authentication="name"></span> | <span th:text="#{text.footer.roles}">Roles:</span> <span
 				sec:authentication="principal.authorities"></span>
 		</p>
 		<br>
