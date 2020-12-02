@@ -4,6 +4,7 @@ package cl.udemy.jpa.controller;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -36,6 +37,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
@@ -44,6 +46,7 @@ import cl.udemy.jpa.modelo.Cliente;
 import cl.udemy.jpa.service.IClienteService;
 import cl.udemy.jpa.service.IUploadService;
 import cl.udemy.jpa.utilPage.PageRender;
+import cl.udemy.jpa.view.xml.ClienteList;
 
 @Controller
 @SessionAttributes("cliente")
@@ -91,6 +94,8 @@ public class ClienteController {
 
 	}
 
+	
+	
 	@RequestMapping(value = {"/listar","/"}, method = RequestMethod.GET)
 	public String listar(Model modelo,Authentication authentication,
 			HttpServletRequest request, Locale locale,
